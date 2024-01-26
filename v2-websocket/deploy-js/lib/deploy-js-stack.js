@@ -9,8 +9,8 @@ import subscriptions from "aws-cdk-lib/aws-sns-subscriptions";
 import {
   HttpLambdaIntegration,
   WebSocketLambdaIntegration,
-} from "@aws-cdk/aws-apigatewayv2-integrations-alpha";
-import * as apigwv2 from "@aws-cdk/aws-apigatewayv2-alpha";
+} from "aws-cdk-lib/aws-apigatewayv2-integrations";
+import * as apigwv2 from "aws-cdk-lib/aws-apigatewayv2";
 
 import * as dotenv from "dotenv";
 dotenv.config();
