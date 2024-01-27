@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-import cdk  from 'aws-cdk-lib';
-import { DeployJsStack } from '../lib/deploy-js-stack.js';
-import * as dotenv from 'dotenv' 
-dotenv.config()
+import cdk from "aws-cdk-lib";
+import { DeployJsStack } from "../lib/deploy-js-stack.js";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 const app = new cdk.App();
-new DeployJsStack(app, 'DeployJsStack', {
+new DeployJsStack(app, "OpenAIChatbot", {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
@@ -17,7 +17,10 @@ new DeployJsStack(app, 'DeployJsStack', {
   /* Uncomment the next line if you know exactly what Account and Region you
    * want to deploy the stack to. */
   // env: { account: '123456789012', region: 'us-east-1' },
-  env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
+  env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: process.env.CDK_DEFAULT_REGION,
+  },
 
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 });

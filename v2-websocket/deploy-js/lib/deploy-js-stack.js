@@ -31,19 +31,11 @@ export class DeployJsStack extends Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
-    if (!process.env.USER_TABLE) throw Error("empty environment variables");
-
-    const config = {
-      region: process.env.CDK_DEFAULT_REGION,
-      account: process.env.CDK_DEFAULT_ACCOUNT,
-    };
-
     const dynamoTable = new Table(this, "chat_user_info", {
       partitionKey: {
         name: "username",
         type: AttributeType.STRING,
       },
-      tableName: process.env.USER_TABLE,
       /**
        *  The default removal policy is RETAIN, which means that cdk destroy will not attempt to delete
        * the new table, and it will remain in your account until manually deleted. By setting the policy to
@@ -62,10 +54,11 @@ export class DeployJsStack extends Stack {
 
     const NodejsFunctionProps = {
       environment: {
-        USER_TABLE: process.env.USER_TABLE,
+        USER_TABLE: dynamoTable.tableName,
         OPENAI_API_KEY: process.env.OPENAI_API_KEY,
         START_CMD: process.env.START_CMD,
         SNS_TOPIC_ARN: snsTopic.topicArn,
+        TOKEN_KEY: process.env.TOKEN_KEY,
       },
       runtime: Runtime.NODEJS_18_X,
     };

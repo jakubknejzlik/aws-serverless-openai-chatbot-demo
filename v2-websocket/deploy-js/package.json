@@ -8,6 +8,9 @@
   "scripts": {
     "build": "echo \"The build step is not required when using JavaScript!\" && exit 0",
     "cdk": "cdk",
+    "cdk:deploy": "cdk deploy",
+    "cdk:watch": "cdk watch --no-rollback --hotswap-fallback",
+    "cdk:destroy": "cdk destroy",
     "test": "jest"
   },
   "devDependencies": {
